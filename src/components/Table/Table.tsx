@@ -1,0 +1,36 @@
+import { Data } from "../../intefaces";
+import RowTable from "../RowTable/RowTable";
+import TableButtons from "../TableButtons/TableButtons";
+import "./Table.css"
+
+interface TableProps<T> {
+    thead: string[],
+    tbody: Data<T>
+}
+
+export default function Table <T>({thead, tbody}:TableProps<T>){
+
+    if(tbody === null || tbody=== undefined || typeof tbody !== "object"  ){
+        return null
+    }
+
+    return (
+        <>
+            <table className="table">
+                <thead>
+                    <tr>
+                        {thead.map((item,index)=>(
+                            <th key={index}>{item}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                        {Object.values(tbody).map((item,index)=>(
+                            <RowTable<T> key={index} item={item} children={<TableButtons id={item.id}/>}/>
+                        ))}
+                </tbody>
+            </table>
+        
+        </>
+    )
+}

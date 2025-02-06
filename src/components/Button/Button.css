@@ -1,0 +1,13 @@
+.agregar{
+    background-color: blue ;
+    color: white;
+}
+.eliminar{
+    background-color: red;
+    color: white;
+    
+}
+.modificar{
+    background-color: green;
+    color: white;
+}
