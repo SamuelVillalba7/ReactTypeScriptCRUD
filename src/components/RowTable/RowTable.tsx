@@ -1,25 +1,23 @@
 import { ReactNode } from "react"
+import { EntityType } from "../../intefaces"
 
 
 
-interface Props<T>{
-    item:T,
+interface Props{
+    item:EntityType,
     children?:ReactNode
 }
 
-export default function RowTable <T>({item,children}:Props<T>){
-
-    if(typeof item !== "object" || item ===null){
-        return null
-    }
-
-
-
-
+export default function RowTable({item,children}:Props){   
     return(
         <tr> 
-            {Object.values(item).map((i,index)=>(
-                  <td key={index} className="border p-2">{String(i)}</td>
+            {Object.entries(item).map(([key,value])=>(
+                key !== "type"?(
+                    <td key={key} className="border p-2">{String(value)}</td>
+                ):(
+                   null
+                )
+                 
             ))}
            {children}
         </tr>

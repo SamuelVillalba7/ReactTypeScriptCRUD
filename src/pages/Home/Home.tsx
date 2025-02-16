@@ -1,25 +1,19 @@
 
-import Form from "../../components/Form/Form";
-import TableProdutsContainer from "../../components/TableProdutsContainer/TableProdutsContainer";
-import { IProduct } from "../../intefaces";
+import { FormProductContainer, TableProdutsContainer } from "../../components";
+import { FormProvider } from "../../context/FormContext";
+import { RefreshProvider} from "../../context/RefreshTableContext";
+
 
 export default function Home (){
     
-    const product:IProduct ={
-        name: "s",
-        idCategory: 1,
-        description: "",
-        price: 12,
-        urlImage: "",
-        stock: 1,
-        state: true
-    }
-    
-    
     return(
-        <>
-            <TableProdutsContainer/>
-            <Form item={product} />
+        <> 
+            <RefreshProvider>
+                <FormProvider>
+                    <TableProdutsContainer/>
+                    <FormProductContainer/>                
+                </FormProvider>       
+            </RefreshProvider>
         </>
     )
 }

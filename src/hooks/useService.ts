@@ -1,0 +1,34 @@
+import { EntityType, isCategory, IServiceConfig } from "../intefaces"
+import { serviceCategory, serviceProduct } from "../services"
+
+
+interface Props{
+    saveService:IServiceConfig,
+    updateService:IServiceConfig,
+    highLogicService:IServiceConfig,
+    lowLogicService:IServiceConfig,
+    deleteService:IServiceConfig
+}
+
+export const useService=(item:EntityType):Props=>{
+
+        const idItem = item.id? item.id: -1
+        if(isCategory(item)){
+            const saveService=  serviceCategory.save(item)  
+            const updateService= serviceCategory.update(item)
+            const highLogicService=serviceCategory.highLogic(idItem)
+            const lowLogicService=serviceCategory.lowLogic(idItem)
+            const deleteService=serviceCategory.delete(idItem)
+            return {saveService,updateService, highLogicService,lowLogicService,deleteService}
+        
+        }else{
+            const saveService=  serviceProduct.save(item)  
+            const updateService= serviceProduct.update(item)
+            const highLogicService=serviceCategory.highLogic(idItem)
+            const lowLogicService=serviceCategory.lowLogic(idItem)
+            const deleteService=serviceProduct.delete(idItem)
+            return {saveService,updateService, highLogicService,lowLogicService,deleteService}
+        }
+       
+
+}

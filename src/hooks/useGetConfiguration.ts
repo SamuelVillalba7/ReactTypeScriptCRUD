@@ -12,7 +12,6 @@ export const useGetConfiguration= (method:"GET" | "POST" | "PUT" | "DELETE" , bo
     if(body !== undefined){
         config.body= body;
     }
-    console.log(config)
     return config;
   
     

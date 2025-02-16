@@ -1,16 +1,18 @@
-import { useState } from "react"
+
+import "./Form.css"
+import { EntityType} from "../../intefaces"
+import { ReactNode } from "react";
+
+
 
 interface Props<T>{
-    item:T 
+    itemForm:EntityType ,
+    setItemForm: React.Dispatch<React.SetStateAction<T>>,
+    children?:ReactNode 
 }
-export default function Form<T extends Record<string, unknown>>({item}:Props<T>){
-
-    const [itemForm,setItemForm]= useState<T>(item)
-
-    if(typeof item !== "object" || !item){
-        return null
-    }
-    const handleChange = (key: string, value: string) => {
+export default function Form<T>({itemForm,setItemForm,children}:Props<T>){
+    
+    const handleChange = (key: string, value: unknown) => {
         setItemForm((prev) => ({
           ...prev,
           [key]: value,
@@ -19,17 +21,35 @@ export default function Form<T extends Record<string, unknown>>({item}:Props<T>)
    
 
     return(
-        <>
-            <form>
+        <div className="container-form">
+           
+            <form className="form-section form">
+            <h1>{itemForm.type}</h1>
                 {Object.entries(itemForm).map(([key,value])=>(
-                    <label key={key}>
-                            {key}
-                            <input type="text" value={typeof value === "string" ? value : ""}  onChange={(e) => handleChange(key, e.target.value)}  />
-                    </label>
-                  
+                   key !== "type" && (
+                    <div className="form-group" key={key}>
+                        <label className="form-label" >
+                                {key}
+                            { key==="id"? (
+                                <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  } disabled  />
+                            ):typeof value === "string" || typeof value === "number"? (
+                                    <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  }  onChange={(e) => handleChange(key, e.target.value)}  />
+                            ): typeof value === "boolean"?(
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={value}
+                                    onChange={(e) => handleChange(key,e.target.checked)}
+                                />
+                            ):null}
+                        </label>
+                    </div>
+                    )
                 ))}
+                
             </form>
+            {children}
             
-        </>
+        </div>
     )
 }

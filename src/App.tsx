@@ -4,6 +4,7 @@ import { NavBar } from './components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Admin, Home } from './pages'
 import "./App.css"
+
 function App() {
 
   return (

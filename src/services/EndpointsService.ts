@@ -1,22 +1,22 @@
-import { IProduct, IServiceConfig } from "../intefaces"
+import { ICategory, IProduct, IServiceConfig } from "../intefaces"
 
 
- class Endponints {
+ export class EndponintsProducts {
 
-    public getProductById (id:string):IServiceConfig{
+    public findById (id:number):IServiceConfig{
         return {
             method: "GET",
             url: `http://localhost:8080/product/findById/${id}`
         }
     }
-    public getAllProducts():IServiceConfig{
+    public findAll():IServiceConfig{
         return{
             method: "GET",
             url: `http://localhost:8080/product/findAll`
         }
     }
 
-    public saveProduct(product:IProduct):IServiceConfig{
+    public save(product:IProduct):IServiceConfig{
         return{
             method: "POST",
             url: `http://localhost:8080/product/save`,
@@ -24,14 +24,14 @@ import { IProduct, IServiceConfig } from "../intefaces"
         }
     }
 
-    public deleteProductById(id:string):IServiceConfig{
+    public delete(id:number):IServiceConfig{
         return{
             method: "DELETE",
             url: `http://localhost:8080/product/delete?id=${id}`
         }
     }
 
-    public updateProduct(product:IProduct):IServiceConfig{
+    public update(product:IProduct):IServiceConfig{
         return{
             method: "PUT",
             url: `http://localhost:8080/product/update`,
@@ -39,8 +39,22 @@ import { IProduct, IServiceConfig } from "../intefaces"
 
         }
     }
+    public highLogic(id:number):IServiceConfig{
+        return{
+            method: "PUT",
+            url: `http://localhost:8080/product/highLogic?id=${id}`
+        }
+    }
 
-    public getProductsByCategory(id:string):IServiceConfig{
+    public lowLogic(id:number):IServiceConfig{
+        return{
+            method: "PUT",
+            url: `http://localhost:8080/product/lowLogic?id=${id}`
+        }
+    }
+
+
+    public findByCategory(id:number):IServiceConfig{
         return{
             method: "PUT",
             url: `http://localhost:8080/product/findByCategory/${id}`
@@ -49,6 +63,60 @@ import { IProduct, IServiceConfig } from "../intefaces"
 
 
 }
+export class EndponintsCategory {
 
-export const serviceSB =new Endponints()
+    public findById (id:number):IServiceConfig{
+        return {
+            method: "GET",
+            url: `http://localhost:8080/category/findById/${id}`
+        }
+    }
+    public findAll():IServiceConfig{
+        return{
+            method: "GET",
+            url: `http://localhost:8080/category/findAll`
+        }
+    }
+
+    public save(category:ICategory):IServiceConfig{
+        return{
+            method: "POST",
+            url: `http://localhost:8080/category/save`,
+            body: JSON.stringify(category)
+        }
+    }
+
+    public delete(id:number):IServiceConfig{
+        return{
+            method: "DELETE",
+            url: `http://localhost:8080/category/delete/${id}`
+        }
+    }
+
+    public update(category:ICategory):IServiceConfig{
+        return{
+            method: "PUT",
+            url: `http://localhost:8080/category/update`,
+            body:JSON.stringify(category)
+
+        }
+    }
+
+    public highLogic(id:number):IServiceConfig{
+        return{
+            method: "PUT",
+            url: `http://localhost:8080/category/highLogic?id=${id}`
+        }
+    }
+
+    public lowLogic(id:number):IServiceConfig{
+        return{
+            method: "PUT",
+            url: `http://localhost:8080/category/lowLogic?id=${id}`
+        }
+    }
+}
+
+export const serviceProduct =new EndponintsProducts()
+export const serviceCategory = new EndponintsCategory()
 

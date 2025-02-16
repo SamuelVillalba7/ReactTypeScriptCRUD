@@ -17,14 +17,13 @@ import { Data, ErrorType, IFetchConfiguration, IFetchParams } from "../intefaces
                 const response = await fetch(url,config)
                 console.log(response)
                 if(!response){
-                    console.log("!2")
+                
                     throw new Error("Error en la peticion")
-                    console.log("error")
                 }
                 const jsonData = await response.json();
             
                 setData(jsonData);
-                console.log("!")
+           
 
             }catch(err){
                 setError(err as Error)

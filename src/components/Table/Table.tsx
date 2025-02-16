@@ -1,18 +1,25 @@
-import { Data } from "../../intefaces";
+
+import { Data, ICategory, IProduct } from "../../intefaces";
+
+
 import RowTable from "../RowTable/RowTable";
 import TableButtons from "../TableButtons/TableButtons";
+
 import "./Table.css"
 
 interface TableProps<T> {
     thead: string[],
-    tbody: Data<T>
+    tbody: Data<T[]>
 }
 
-export default function Table <T>({thead, tbody}:TableProps<T>){
+export default function Table <T extends IProduct | ICategory>({thead, tbody}:TableProps<T>){
 
+  
     if(tbody === null || tbody=== undefined || typeof tbody !== "object"  ){
         return null
     }
+
+    
 
     return (
         <>
@@ -26,11 +33,14 @@ export default function Table <T>({thead, tbody}:TableProps<T>){
                 </thead>
                 <tbody>
                         {Object.values(tbody).map((item,index)=>(
-                            <RowTable<T> key={index} item={item} children={<TableButtons id={item.id}/>}/>
+                            <RowTable key={index} item={item} >
+                                <TableButtons item={item} />
+                            </RowTable>
                         ))}
                 </tbody>
             </table>
-        
+                        
+          
         </>
     )
 }

@@ -1,35 +1,39 @@
 
-import { Data, IProduct } from "../../intefaces"
+import {  Data, dataToProducts, IProduct } from "../../intefaces"
 import { useApiService } from "../../hooks"
-import { serviceSB } from "../../services"
+import { serviceProduct  } from "../../services"
 import Table from "../Table/Table"
 import "./TableProdutsContainer.css"
 import { useEffect } from "react"
+import { useRefresh } from "../../context/RefreshTableContext"
+
 interface TableProps<T> {
     thead: string[],
-    tbody: Data<T>
+    tbody: Data<T[]>
 }
 
 export default function TableProdutsContainer(){
     
-    const {data,fetchData} = useApiService<IProduct>(serviceSB.getAllProducts())
-
-    useEffect(()=>{
+    const {data,fetchData} = useApiService<IProduct>(serviceProduct.findAll())
+    const {refresh}=useRefresh()
+ 
+    useEffect(()=>{ 
+        
         fetchData()
-    },[])
-    
+      
+    },[refresh])
+
+
+    const result = dataToProducts({ data });
     const props:TableProps<IProduct> ={
         thead:["id","nombre","idCategoria","description","precio","urlImagen","stock","estado"],
-        tbody: data || null
+        tbody:result
     }
-
     return (
         <>
             <div className="TableProductsContainer">
                 <Table<IProduct> {...props} />
-
             </div>
-        
         </>
     )
 }
