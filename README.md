@@ -1,50 +1,71 @@
-# React + TypeScript + Vite
+# React TypeScript CRUD con Spring Boot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de CRUD desarrollado en React con TypeScript, que se conecta a una base de datos gestionada con Spring Boot. Está diseñado para un eCommerce y permite la gestión de productos, clientes y pedidos.
 
-Currently, two official plugins are available:
+## Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend:
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- React Router
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Backend:
 
-- Configure the top-level `parserOptions` property like this:
+- Spring Boot
+- Spring Data JPA
+- Base de datos relacional (SQL Server)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Repositorios
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Frontend:** [React TypeScript CRUD](https://github.com/SamuelVillalba7/ReactTypeScriptCRUD)
+- **Backend:** [Ecommerce Spring Boot](https://github.com/SamuelVillalba7/Eccomerce-SpringBoot)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Instalación y ejecución
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Backend (Spring Boot)
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/SamuelVillalba7/Eccomerce-SpringBoot.git
+   ```
+2. Configurar la base de datos en `application.properties` o `application.yml`.
+3. Ejecutar el proyecto con:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+### Frontend (React TypeScript)
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/SamuelVillalba7/ReactTypeScriptCRUD.git
+   ```
+2. Instalar dependencias:
+   ```bash
+   cd ReactTypeScriptCRUD
+   npm install
+   ```
+3. Configurar la URL de la API en los servicios de Axios.
+4. Iniciar la aplicación:
+   ```bash
+   npm run dev
+   ```
+
+## Características principales
+
+- Listado de productos
+- Creación, actualización y eliminación de productos
+- Manejo de clientes y pedidos (según backend)
+- Autenticación y autorización (si se implementa con Spring Security)
+
+## Contribución
+
+Si deseas contribuir, puedes hacer un fork del repositorio y crear un pull request con tus cambios.
+
+## Autor
+
+Desarrollado por [Samuel Villalba](https://github.com/SamuelVillalba7).
+
+
