@@ -5,7 +5,6 @@ import { RefreshProvider} from "../../context/RefreshTableContext";
 
 
 export default function Home (){
-    
     return(
         <> 
             <RefreshProvider>

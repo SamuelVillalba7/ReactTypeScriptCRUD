@@ -15,11 +15,9 @@ interface TableProps<T> {
 export default function Table <T extends EntityType>({thead, tbody}:TableProps<T>){
 
   
-    if(tbody === null || tbody=== undefined || typeof tbody !== "object"  ){
+    if(!tbody){
         return null
     }
-
-    
 
     return (
         <>

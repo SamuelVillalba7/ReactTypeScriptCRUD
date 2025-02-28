@@ -5,6 +5,7 @@ import FormButtons from "../FormButtons/FormButtons";
 
 export default function FormCategoryContainer(){
     const {category,setCategory}= useForm()
+
     return(
         <>
             <Form<ICategory> 

@@ -1,6 +1,7 @@
 import { useForm } from "../../context/FormContext"
 import { useApiService, useService } from "../../hooks"
 import { EntityType, IButton, isCategory, isProduct } from "../../intefaces"
+import { isUser } from "../../intefaces/IUsers"
 
 import Button from "../Button/Button"
 
@@ -9,24 +10,20 @@ import Button from "../Button/Button"
 }
 
 
+
 export default function TableButtons <T extends EntityType>({item}:Props){
     
     const {setProduct,setCategory,setUser}=useForm()
     const {deleteService,highLogicService,lowLogicService}=useService(item)
     
- 
+    function set(entity:EntityType){
+        if (isCategory(entity)) setCategory(entity)
+        if (isProduct(entity)) setProduct(entity)
+        if (isUser(entity)) setUser(entity)
+     }
 
-    const setear=()=>{
-        if(isCategory(item)){
-            setCategory(item)
-        }else if(isProduct(item)){
-            setProduct(item)
-        }else{
-            setUser(item)
-       }
-    }
- 
-
+    const seteador =()=> set(item)
+  
     const {fetchData: deleteById}= useApiService<T>(deleteService)
     const {fetchData: highLogic}= useApiService<T>(highLogicService)
     const {fetchData: lowLogic}= useApiService<T>(lowLogicService)
@@ -48,7 +45,7 @@ export default function TableButtons <T extends EntityType>({item}:Props){
     const modificar:IButton={
         label:"modificar" ,
         classname: "modificar",
-        method:setear
+        method:seteador
     }
 
     const eliminar:IButton={

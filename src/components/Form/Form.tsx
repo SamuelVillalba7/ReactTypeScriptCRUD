@@ -2,7 +2,8 @@
 import "./Form.css"
 import { EntityType} from "../../intefaces"
 import { ReactNode } from "react";
-import Dropdown from "../Dropdown/Dropdown";
+import DropdownCategory from "../DropdownCategory/DropdownCategory";
+import FormInput from "../FormInput/FormInput";
 
 
 
@@ -19,34 +20,29 @@ export default function Form<T>({itemForm,setItemForm,children}:Props<T>){
           [key]: value,
         }));
       };
-   
+    
 
     return(
         <div className="container-form">
            
             <form className="form-section form">
             <h1>{itemForm.type}</h1>
+
                 {Object.entries(itemForm).map(([key,value])=>(
                    key !== "type" && (
                     <div className="form-group" key={key}>
                         <label className="form-label" >
                                 {key}
-                            {
-                            
-                            key==="idCategory"?(
-                                <Dropdown handleChange={handleChange} text={key}  />
-                            ):key==="id"? (
-                                <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  } disabled  />
-                            ):typeof value === "string" || typeof value === "number"? (
-                                    <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  }  onChange={(e) => handleChange(key, e.target.value)}  />
-                            ): typeof value === "boolean"?(
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={value}
-                                    onChange={(e) => handleChange(key,e.target.checked)}
-                                />
-                            ):null}
+                                {key ==="idCategory" ? (
+                                    <DropdownCategory handleChange={handleChange}/>
+                                ):(  
+                                    <FormInput 
+                                        key={key} 
+                                        fieldKey={key} 
+                                        value={value} 
+                                        handleChange={handleChange}
+                                    />   
+                                )}
                         </label>
                     </div>
                     )

@@ -25,15 +25,14 @@ export default function TableProdutsContainer(){
     },[refresh])
 
 
-    const result = dataToProducts({ data });
+    
     const props:TableProps<IProduct> ={
         thead:["id","nombre","idCategoria","description","precio","urlImagen","stock","estado"],
-        tbody:result
+        tbody:dataToProducts({ data })
     }
     return (
         <div className="TableProductsContainer">
             <Table<IProduct> {...props} />
-           
         </div>
         
     )

@@ -9,14 +9,11 @@ export default function Button ({label,method,classname,refresh}:IButton){
     const {handleRefresh}=useRefresh()
 
     const handleClick =()=>{
-       
        method()
-       
         if(refresh === true){
             setTimeout(() => {
                 handleRefresh()
               }, 200);
-           
         }
     }
     
