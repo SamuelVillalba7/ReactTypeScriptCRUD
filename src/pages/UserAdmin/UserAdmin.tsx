@@ -1,18 +1,16 @@
-import { FormCategoryContainer, TableCategoryContainer } from "../../components";
+import { FormUserContainer, TableUserContainer } from "../../components";
 import { FormProvider } from "../../context/FormContext";
 import { RefreshProvider } from "../../context/RefreshTableContext";
 
-export default function AdminCategory(){
+export default function UserAdmin(){
     return(
         <>
             <FormProvider>
                 <RefreshProvider>
-                    <TableCategoryContainer/>
-                    <FormCategoryContainer/>
+                    <TableUserContainer/>
+                    <FormUserContainer/>
                 </RefreshProvider>
             </FormProvider>
-
-
         </>
     )
-}
+} 

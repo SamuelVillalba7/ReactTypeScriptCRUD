@@ -16,6 +16,9 @@
 .form-control{
     width: 75%;
 }
+.form-select{
+    width: 75%;
+}
 
 .container-form{
    display: flex;

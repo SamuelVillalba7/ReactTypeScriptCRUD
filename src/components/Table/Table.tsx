@@ -1,5 +1,5 @@
 
-import { Data, ICategory, IProduct } from "../../intefaces";
+import { Data, EntityType } from "../../intefaces";
 
 
 import RowTable from "../RowTable/RowTable";
@@ -12,7 +12,7 @@ interface TableProps<T> {
     tbody: Data<T[]>
 }
 
-export default function Table <T extends IProduct | ICategory>({thead, tbody}:TableProps<T>){
+export default function Table <T extends EntityType>({thead, tbody}:TableProps<T>){
 
   
     if(tbody === null || tbody=== undefined || typeof tbody !== "object"  ){

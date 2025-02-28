@@ -7,6 +7,7 @@ import "./TableProdutsContainer.css"
 import { useEffect } from "react"
 import { useRefresh } from "../../context/RefreshTableContext"
 
+
 interface TableProps<T> {
     thead: string[],
     tbody: Data<T[]>
@@ -30,10 +31,10 @@ export default function TableProdutsContainer(){
         tbody:result
     }
     return (
-        <>
-            <div className="TableProductsContainer">
-                <Table<IProduct> {...props} />
-            </div>
-        </>
+        <div className="TableProductsContainer">
+            <Table<IProduct> {...props} />
+           
+        </div>
+        
     )
 }

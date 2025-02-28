@@ -2,6 +2,7 @@
 import "./Form.css"
 import { EntityType} from "../../intefaces"
 import { ReactNode } from "react";
+import Dropdown from "../Dropdown/Dropdown";
 
 
 
@@ -30,7 +31,11 @@ export default function Form<T>({itemForm,setItemForm,children}:Props<T>){
                     <div className="form-group" key={key}>
                         <label className="form-label" >
                                 {key}
-                            { key==="id"? (
+                            {
+                            
+                            key==="idCategory"?(
+                                <Dropdown handleChange={handleChange} text={key}  />
+                            ):key==="id"? (
                                 <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  } disabled  />
                             ):typeof value === "string" || typeof value === "number"? (
                                     <input className="form-control" placeholder={`ingrese ${key}`} type="text" value={  value  }  onChange={(e) => handleChange(key, e.target.value)}  />

@@ -1,5 +1,5 @@
-import { EntityType, isCategory, IServiceConfig } from "../intefaces"
-import { serviceCategory, serviceProduct } from "../services"
+import { EntityType, isCategory, IServiceConfig, isProduct } from "../intefaces"
+import { serviceCategory, serviceProduct, serviceUser } from "../services"
 
 
 interface Props{
@@ -21,14 +21,21 @@ export const useService=(item:EntityType):Props=>{
             const deleteService=serviceCategory.delete(idItem)
             return {saveService,updateService, highLogicService,lowLogicService,deleteService}
         
-        }else{
+        }else if(isProduct(item)){
             const saveService=  serviceProduct.save(item)  
             const updateService= serviceProduct.update(item)
-            const highLogicService=serviceCategory.highLogic(idItem)
-            const lowLogicService=serviceCategory.lowLogic(idItem)
+            const highLogicService=serviceProduct.highLogic(idItem)
+            const lowLogicService=serviceProduct.lowLogic(idItem)
             const deleteService=serviceProduct.delete(idItem)
             return {saveService,updateService, highLogicService,lowLogicService,deleteService}
+        }else{
+            const saveService=  serviceUser.save(item)  
+            const updateService= serviceUser.update(item)
+            const highLogicService=serviceUser.highLogic(idItem)
+            const lowLogicService=serviceUser.lowLogic(idItem)
+            const deleteService=serviceUser.delete(idItem)
+            return {saveService,updateService, highLogicService,lowLogicService,deleteService}
+
         }
-       
 
 }

@@ -1,6 +1,7 @@
 import { useForm } from "../../context/FormContext"
 import { useApiService, useService } from "../../hooks"
-import { EntityType, IButton, ICategory, IProduct, isCategory } from "../../intefaces"
+import { EntityType, IButton, isCategory, isProduct } from "../../intefaces"
+
 import Button from "../Button/Button"
 
  interface Props{
@@ -8,14 +9,22 @@ import Button from "../Button/Button"
 }
 
 
-export default function TableButtons <T extends IProduct | ICategory>({item}:Props){
+export default function TableButtons <T extends EntityType>({item}:Props){
     
-    const {setProduct,setCategory}=useForm()
+    const {setProduct,setCategory,setUser}=useForm()
     const {deleteService,highLogicService,lowLogicService}=useService(item)
     
  
 
-    const setear=()=> isCategory(item)? (setCategory(item)):(setProduct(item))
+    const setear=()=>{
+        if(isCategory(item)){
+            setCategory(item)
+        }else if(isProduct(item)){
+            setProduct(item)
+        }else{
+            setUser(item)
+       }
+    }
  
 
     const {fetchData: deleteById}= useApiService<T>(deleteService)

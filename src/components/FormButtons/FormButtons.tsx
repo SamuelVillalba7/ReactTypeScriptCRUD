@@ -1,7 +1,8 @@
 import Button from "../Button/Button"
-import { emptyCategory, EntityType, isCategory } from "../../intefaces"
+import { emptyCategory, EntityType, isCategory, isProduct } from "../../intefaces"
 import { useApiService, useService } from "../../hooks"
 import { emptyProduct } from "../../intefaces"
+import { emptyUser } from "../../intefaces/IUsers"
 
 
 interface Props<T>{
@@ -13,7 +14,14 @@ export default function FormButtons<T>({item,setItem}:Props<T>){
         
         const {saveService,updateService}=useService(item) 
         const setItemForm = () => {
-            setItem((isCategory(item) ? (emptyCategory as T ) : (emptyProduct as T)));
+
+            if(isCategory(item)){
+                setItem(emptyCategory as T)
+            }else if(isProduct(item)){
+                setItem(emptyProduct as T)
+            }else{
+                setItem(emptyUser as T)
+            }
         };
 
         const {fetchData : save} = useApiService<T>(saveService)
